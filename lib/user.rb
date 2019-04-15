@@ -14,15 +14,23 @@ class User
   def initialize(email_to_save, age_to_save)
     @email = email_to_save
     @age = age_to_save
-    @@array << [@email, @age]
+    @@array << self
     puts "Bienvenue #{@email}, tu as #{@age} et tu viens de t'inscrire ;)"
 
   end
 
   def self.find_by_email(email)
-    @@array.each {|element| if element[0] == email then puts "Voici l'âge du user cherché : #{element[1]}ans " end  }
+  @@array.each do |user|
+
+    if user.email == email
+      return user
+    end
 
   end
+
+  puts "aucun utilisateur n'a cet email"
+  return false
+end
 
 #user : #{element[0]} age : #{element[1]}"
 end
